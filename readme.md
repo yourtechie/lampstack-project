@@ -1,5 +1,5 @@
 
-# LAMP stack Server Setup Guides
+# LAMP Stack Server Setup Guides
 
 Here’s a step-by-step guide on how to set up a LAMP stack (Linux, Apache, MySQL, PHP) on an AWS EC2 **t2.micro** instance with **Ubuntu 24.04 LTS** for a DevOps project.
 
@@ -42,25 +42,25 @@ Here’s a step-by-step guide on how to set up a LAMP stack (Linux, Apache, MySQ
    ![Connecting to the instance](images/3.png)
 
 ## Error: 
-I used the default Security Group that is yet to open Port 22 for SSH connection.
+   I used the default Security Group that is yet to open Port 22 for SSH connection.
    ![Connecting to the instance](images/4.png)
 
 ## Solution:
-I editted the inbound rule to allow all traffic, which includes port 22, 80, 443 etc, and connection from anywhere. (You could specify the specific ports instead of allowing all traffic.)
+   I editted the inbound rule to allow all traffic, which includes port 22, 80, 443 etc, and connection from anywhere. (You could specify the specific ports instead of allowing all traffic.)
    ![Editting Inbound Rules](images/5.png)
 
-Now we are able to successfully connect to the instance.
+   Now we are able to successfully connect to the instance.
    ![Connecting to the instance](images/6.png)
    ![Connected to the instance](images/7.png)
 
 
 
 ### Step 3: Update the Server
-Run the following commands to update your server:
-```bash
-sudo apt update
-sudo apt upgrade -y
-```
+   Run the following commands to update your server:
+   ```bash
+   sudo apt update
+   sudo apt upgrade -y
+   ```
 
 ### Step 4: Install Apache
 1. Install **Apache**:
@@ -74,7 +74,7 @@ sudo apt upgrade -y
   ![Update the server](images/8.png)
 
 3. Open your browser and navigate to your EC2 public IP. You should see the Apache default page.
-Or curl http://localhost:80
+   Or curl http://localhost:80
   ![curl on the server](images/9.png)
   ![Browser](images/10.png)
 
@@ -128,7 +128,7 @@ Or curl http://localhost:80
    sudo systemctl restart apache2
    ```
 
-### Step 7: Set Up Virtual Hosts (Optional)
+### Step 7: Set Up Virtual Hosts 
 1. Create a new directory for your website:
    ```bash
    sudo mkdir /var/www/lampproject
@@ -203,7 +203,7 @@ Or curl http://localhost:80
    ```bash
    cat index.html
    ```
-  ![testing](images/19.png)
+  ![setting scripts](images/20.png)
 
 
 
@@ -211,13 +211,30 @@ Or curl http://localhost:80
       http://34.239.0.90/
       http://ec2-34-239-0-90.compute-1.amazonaws.com/:80
 
-     ![testing](images/20.png)
+     ![testing](images/21.png)
+     ![testing](images/22.png)
+
+### Step 9: Enable PHP on the website
+   ```bash
+   sudo nano /etc/apache2/mods-enabled/dir.conf
+   ```
+
+   ```bash
+   <IfModule mod_dir.c>
+       DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
+   </IfModule>
+   ```
+
+   ```bash
+   sudo systemctl reload apache2
+
+   ```
 
 
 ### Step 10: Test PHP Installation
 1. Create a PHP test file:
    ```bash
-   sudo nano /var/www/html/info.php
+   nano /var/www/lampproject/index.php
    ```
 2. Add the following content:
    ```php
@@ -229,39 +246,12 @@ Or curl http://localhost:80
 
 4. In your browser, go to `http://<your-ec2-public-ip>/info.php`. You should see a PHP information page.
 
-3. **Remove PHP info page**:
+5. **Remove PHP info page**:
    For security reasons, delete the PHP info page after testing:
    ```bash
-   sudo rm /var/www/html/info.php
+   rm index.php
    ```
 
 
 
 
-
-
-
-
-
-
-
-
-
-sudo nano /etc/apache2/mods-enabled/dir.conf
-
-<IfModule mod_dir.c>
-    DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
-</IfModule>
-
-sudo systemctl reload apache2
-
-
-nano /var/www/lampproject/index.php
-
-sudo systemctl reload apache2
-
-<?php
-phpinfo();
-
-
-rm index.php
