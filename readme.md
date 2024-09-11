@@ -229,6 +229,7 @@ Here’s a step-by-step guide on how to set up a LAMP stack (Linux, Apache, MySQ
    sudo systemctl reload apache2
 
    ```
+   ![testing](images/23.png)
 
 
 ### Step 10: Test PHP Installation
@@ -251,6 +252,9 @@ Here’s a step-by-step guide on how to set up a LAMP stack (Linux, Apache, MySQ
    ```bash
    rm index.php
    ```
+   ![testing](images/24.png)
+   ![testing](images/25.png)
+   ![testing](images/26.png)
 
 
 
