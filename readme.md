@@ -157,8 +157,6 @@ Here’s a step-by-step guide on how to set up a LAMP stack (Linux, Apache, MySQ
 
 4. Enable the virtual host:
    ```bash
-   sudo a2ensite yourwebsite.conf
-   sudo ls /etc/apache2/sites-available
    sudo a2ensite lampproject
    sudo a2dissite 000-default
    sudo apache2ctl configtest
