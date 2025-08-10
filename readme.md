@@ -243,7 +243,7 @@ Here’s a step-by-step guide on how to set up a LAMP stack (Linux, Apache, MySQ
    ```
 3. Save and exit (`Ctrl+X`, `Y`, then `Enter`).
 
-4. In your browser, go to `http://<your-ec2-public-ip>/info.php`. You should see a PHP information page.
+4. In your browser, go to `http://<your-ec2-public-ip>/index.php`. You should see a PHP information page.
 
 5. **Remove PHP info page**:
    For security reasons, delete the PHP info page after testing:
