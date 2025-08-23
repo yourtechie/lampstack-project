@@ -233,7 +233,7 @@ Here’s a step-by-step guide on how to set up a LAMP stack (Linux, Apache, MySQ
 ### Step 10: Test PHP Installation
 1. Create a PHP test file:
    ```bash
-   nano /var/www/lampproject/index.php
+   sudo nano /var/www/lampproject/index.php
    ```
 2. Add the following content:
    ```php
